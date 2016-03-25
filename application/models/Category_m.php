@@ -6,10 +6,12 @@ class Category_m extends CI_Model {
     function __construct()
     {
         parent::__construct();
+        $this->load->database();
     }
 
     public function get($filtres = array()) {
-        return $this->db->where($filtres)->get($this->table_user)->result();
+    	if(!empty($filtres)) $this->db->where($filtres); 
+        return $this->db->get($this->table_user)->result();
     }
 
 }
